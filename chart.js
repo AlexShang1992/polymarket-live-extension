@@ -59,7 +59,7 @@
         button:focus-visible,svg:focus-visible{outline:2px solid #72caff;outline-offset:2px}
         .readout{justify-content:flex-start;margin:6px 0 0;min-height:29px;font-variant-numeric:tabular-nums}
         .price{color:#ffad21;font-size:20px;font-weight:650}.delta{font-size:22px;font-weight:750}.up{color:#27d995}.down{color:#fb6475}
-        .quote{font-size:18px;font-weight:750}.quote+.quote{margin-left:10px}.btc-overlay{color:#ffad21;font-size:14px}
+        .quote{font-size:18px;font-weight:750}.quote+.quote{margin-left:10px}.btc-overlay{color:#ffad21;font-size:14px}.remaining{color:#fb6475;font-size:18px;font-weight:750}
         .stale .data{opacity:.5}
         .plot{position:relative;height:180px;min-width:0}svg{display:block;width:100%;height:100%;touch-action:pan-y}
         svg text{font-family:inherit;font-size:10px;fill:#a9b6c5;font-variant-numeric:tabular-nums}
@@ -74,7 +74,7 @@
       </style><section class="chart" aria-label="本机 BTC 实时曲线">
         <div class="top"><div><div class="heading" id="heading">Up / Down 最近60秒走势</div><div class="source" id="source">Polymarket 盘口 + Chainlink 60秒均价</div></div>
           <div class="ranges" role="group" aria-label="曲线类型和时间范围"><button type="button" data-mode="quotes" aria-pressed="true">Up / Down</button><button type="button" data-mode="btc" data-range="900" aria-pressed="false">15 分钟</button><button type="button" data-mode="btc" data-range="300" aria-pressed="false">5 分钟</button><button type="button" data-mode="btc" data-range="60" aria-pressed="false">60 秒</button></div></div>
-        <div class="readout"><span class="price" id="price" hidden>—</span><strong class="quote up" id="up-quote">Up —</strong><strong class="quote down" id="down-quote">Down —</strong><strong class="quote btc-overlay" id="btc-overlay">BTC 60秒 —</strong><strong class="delta" id="delta">—</strong></div>
+        <div class="readout"><span class="price" id="price" hidden>—</span><strong class="quote up" id="up-quote">Up —</strong><strong class="quote down" id="down-quote">Down —</strong><strong class="quote btc-overlay" id="btc-overlay">BTC 60秒 —</strong><strong class="remaining" id="remaining">剩余 --:--</strong><strong class="delta" id="delta">—</strong></div>
         <div class="plot"><svg id="chart" role="img" tabindex="0" aria-label="等待 Up/Down 盘口与 BTC 行情；左右方向键查看数据点"></svg><div class="empty" id="empty">等待本轮盘口数据</div><div class="tooltip" id="tooltip" hidden></div></div>
         <div class="foot"><span class="target-key" id="target" hidden>┄ 目标价 —</span></div>
         <a id="current-link" hidden>打开当前轮 ↗</a>
@@ -144,6 +144,9 @@
       get('delta').textContent = diff == null ? '—' : `${diff >= 0 ? '↑' : '↓'} $${Math.abs(diff).toFixed(2)}`;
       get('delta').className = 'delta ' + (diff == null ? '' : diff >= 0 ? 'up' : 'down');
       get('target').textContent = state?.target == null ? '┄ 目标价 —' : `┄ 目标价 ${money(state.target)}`;
+      const secondsLeft = state ? Math.max(0, Math.ceil((state.end * 1000 - state.server_ms) / 1000)) : null;
+      get('remaining').textContent = secondsLeft == null ? '剩余 --:--' :
+        `剩余 ${String(Math.floor(secondsLeft / 60)).padStart(2, '0')}:${String(secondsLeft % 60).padStart(2, '0')}`;
       const svg = get('chart'), W = Math.floor(svg.clientWidth), H = svg.clientHeight;
       if (W < 100) return;
       const right = 76, top = 20, bottom = 29, height = H - top - bottom;

@@ -3,10 +3,11 @@
 A read-only Chrome Manifest V3 extension that adds a local BTC chart to
 Polymarket's five-minute BTC Up/Down market page.
 
-Current version: **1.3.6**
+Current version: **1.3.7**
 
 - Shows Up, Down and BTC on the same rolling 60-second timeline.
 - Shows the current BTC distance above or below the round target price.
+- Shows the current round countdown immediately before the target-price delta.
 - Includes 60-second, 5-minute and 15-minute BTC views.
 - Uses smooth, monotone curves without averaging the source prices.
 - Preserves data gaps instead of fabricating missing samples.
