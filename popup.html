@@ -1,0 +1,5 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><title>BTC 本机行情对照</title>
+<style>body{width:280px;margin:0;padding:18px;background:#10151d;color:#eef2f7;font:13px/1.7 -apple-system,"PingFang SC",sans-serif}h1{font-size:16px;margin:0 0 9px}p{color:#9faebf;font-size:12px}label{display:block}input{width:85px;margin:8px;padding:6px;color:inherit;background:#1c2633;border:1px solid #46556b;border-radius:5px}button,a{font:inherit;color:#75c8ff}button{padding:6px 12px;background:#1c2633;border:1px solid #46556b;border-radius:5px;cursor:pointer}#status{color:#ffad21;min-height:22px}small{color:#8795a8}</style></head>
+<body><h1>BTC 本机行情对照</h1><div id="status">正在检查本机服务…</div><p>在 BTC 5分钟市场价格旁，显示本机采集的价格和涨跌差额。</p>
+<form id="settings"><label>本机服务端口<input id="port" type="number" min="1024" max="65535" required value="8765"></label><button type="submit">保存并重连</button></form>
+<p><a id="local" target="_blank" rel="noopener">打开本机行情页面 ↗</a></p><small>只读显示，不连接钱包。移除插件即可关闭。</small><script src="popup.js"></script></body></html>
