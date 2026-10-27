@@ -74,7 +74,7 @@
       </style><section class="chart" aria-label="本机 BTC 实时曲线">
         <div class="top"><div><div class="heading" id="heading">Up / Down 最近60秒走势</div><div class="source" id="source">Polymarket 盘口 + Chainlink 60秒均价</div></div>
           <div class="ranges" role="group" aria-label="曲线类型和时间范围"><button type="button" data-mode="quotes" aria-pressed="true">Up / Down</button><button type="button" data-mode="btc" data-range="900" aria-pressed="false">15 分钟</button><button type="button" data-mode="btc" data-range="300" aria-pressed="false">5 分钟</button><button type="button" data-mode="btc" data-range="60" aria-pressed="false">60 秒</button></div></div>
-        <div class="readout"><span class="price" id="price" hidden>—</span><strong class="delta" id="delta" hidden>—</strong><strong class="quote up" id="up-quote">Up —</strong><strong class="quote down" id="down-quote">Down —</strong><strong class="quote btc-overlay" id="btc-overlay">BTC 60秒 —</strong></div>
+        <div class="readout"><span class="price" id="price" hidden>—</span><strong class="quote up" id="up-quote">Up —</strong><strong class="quote down" id="down-quote">Down —</strong><strong class="quote btc-overlay" id="btc-overlay">BTC 60秒 —</strong><strong class="delta" id="delta">—</strong></div>
         <div class="plot"><svg id="chart" role="img" tabindex="0" aria-label="等待 Up/Down 盘口与 BTC 行情；左右方向键查看数据点"></svg><div class="empty" id="empty">等待本轮盘口数据</div><div class="tooltip" id="tooltip" hidden></div></div>
         <div class="foot"><span class="target-key" id="target" hidden>┄ 目标价 —</span></div>
         <a id="current-link" hidden>打开当前轮 ↗</a>
@@ -133,7 +133,7 @@
       const quoteMode = this.mode === 'quotes';
       get('heading').textContent = quoteMode ? 'Up / Down 最近60秒走势' : 'BTC 实时走势';
       get('source').textContent = quoteMode ? 'Polymarket 盘口 + Chainlink 60秒均价' : '本机采集 · Chainlink 60秒均价';
-      get('price').hidden = quoteMode; get('delta').hidden = quoteMode;
+      get('price').hidden = quoteMode;
       get('up-quote').hidden = !quoteMode; get('down-quote').hidden = !quoteMode;
       get('btc-overlay').hidden = !quoteMode;
       get('target').hidden = quoteMode;

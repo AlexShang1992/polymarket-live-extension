@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "BTC 5分钟 · 本机行情对照",
-  "version": "1.3.5",
+  "version": "1.3.6",
   "description": "显示本机 BTC 曲线，并将最近60秒 BTC 与最近60秒 Up/Down 盘口叠加对照。只读，不连接钱包。",
   "minimum_chrome_version": "114",
   "permissions": ["storage"],
